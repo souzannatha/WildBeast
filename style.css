@@ -22,7 +22,7 @@ a {
 
 img {
   display: inline-block;
-  max-width: 100%;
+  width: 100%;
   border-radius: 5px;
 }
 
@@ -175,6 +175,41 @@ p {
   top: 2px;
 }
 
+.destaque {
+  font-size: 0.875rem;
+  color: #b07dfb;
+  max-width: 16rem;
+}
+
+.citacao,
+.atributos {
+  padding: 30px;
+  border-radius: 5px;
+  align-self: start;
+  box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, 0.15);
+  background: linear-gradient(135deg, #8844ee, #b07dfb);
+}
+
+.citacao p {
+  font-size: 1.5rem;
+  font-style: italic;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  color: #ffffff;
+}
+
+.atributos li {
+  color: #ffffff;
+  font-family: "Courier", monospace;
+  font-size: 1.125rem;
+  padding: 15px;
+}
+
+.atributos li + li {
+  border-top: 2px solid #b07dfb;
+}
+
 /* anuncios */
 .anuncios {
   display: grid;
@@ -183,6 +218,7 @@ p {
   background: #fafbfc;
   padding: 30px;
   gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 /* footer */
@@ -195,4 +231,79 @@ p {
   color: #ffffff;
   padding: 30px;
   text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .estrutura {
+    grid-template-areas:
+      "header header header"
+      "sidebar conteudo conteudo"
+      "sidebar anuncios anuncios"
+      "footer footer footer";
+  }
+}
+@media (max-width: 760px) {
+  .estrutura {
+    grid-template-columns: auto;
+    grid-template-areas:
+      "header"
+      "sidebar "
+      "conteudo "
+      "anuncios "
+      "footer ";
+  }
+  .header {
+    grid-template-columns: auto;
+  }
+  .logo {
+    margin-bottom: 20px;
+  }
+  .header nav a {
+    font-size: 1rem;
+  }
+  .header li + li {
+    margin-left: 10px;
+  }
+
+  .sidebar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    position: relative;
+  }
+  .sidebar:after {
+    content: "→";
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    color: rgba(0, 0, 0, 0.3);
+    animation: seta 0.5s ease-in 0s infinite alternate;
+  }
+  .sidebar ul {
+    display: flex;
+  }
+  .sidebar ul li {
+    flex: 1 0 60px;
+  }
+  .sidebar {
+    padding: 0 30px;
+  }
+  .sidebar li a {
+    margin: 30px 30px 30px 0px;
+  }
+}
+
+@media (max-width: 600px) {
+  .conteudo {
+    grid-template-columns: auto;
+  }
+}
+
+@keyframes seta {
+  from {
+    right: 30px;
+  }
+  to {
+    right: 20px;
+  }
 }
